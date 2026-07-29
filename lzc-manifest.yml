@@ -9,7 +9,9 @@ application:
     - id: lightbws-login-autofill
       on: browser
       when:
+        - /
         - /login
+        - /login*
       do:
         - src: builtin://simple-inject-password
           params:
