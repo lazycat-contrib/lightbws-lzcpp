@@ -28,7 +28,7 @@ services:
   lightbws:
     # upstream: docker.io/czyt/lightbws:v0.2.0
     image: registry.lazycat.cloud/czyt/czyt/lightbws:88e6bd674e124b17
-    user： root
+    user: root
     environment:
       - LIGHTBWS_ADMIN_USERNAME={{ .U.admin_username }}
       - LIGHTBWS_ADMIN_PASSWORD={{ .U.admin_password }}
