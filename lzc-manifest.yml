@@ -1,0 +1,43 @@
+application:
+  subdomain: lightbws
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://lightbws:8080/
+  injects:
+    - id: lightbws-login-autofill
+      on: browser
+      when:
+        - /
+      do:
+        - src: builtin://simple-inject-password
+          params:
+            user: "{{ .U.admin_username }}"
+            password: "{{ .U.admin_password }}"
+            userSelector: 'input[autocomplete="username"]'
+            passwordSelector: 'input[autocomplete="current-password"]'
+            autoSubmit: true
+    - id: open-save-chooser
+      on: browser
+      when:
+        - /*
+      do:
+        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
+
+services:
+  lightbws:
+    # upstream: docker.io/czyt/lightbws:v0.2.0
+    image: docker.io/czyt/lightbws:v0.2.0
+    environment:
+      - LIGHTBWS_ADMIN_USERNAME={{ .U.admin_username }}
+      - LIGHTBWS_ADMIN_PASSWORD={{ .U.admin_password }}
+      - LIGHTBWS_COOKIE_SECURE=true
+      - LIGHTBWS_ENABLE_UPSTREAM_COMPATIBILITY_ACCOUNT=false
+      - RUST_LOG=lightbws=info,tower_http=info
+    binds:
+      - /lzcapp/var/data:/data
+    cpus: 2
+    mem_limit: 512M
+
+usage: "安装后直接打开应用；系统会使用部署时生成的管理员凭据自动登录。数据保存在应用持久目录中。"

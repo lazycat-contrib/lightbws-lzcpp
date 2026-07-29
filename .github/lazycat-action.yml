@@ -1,0 +1,59 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/lightbws.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: lightbws
+
+build:
+  run_buildscript: false
+
+images:
+  - id: lightbws
+    target: service
+    service: lightbws
+    source: docker.io/czyt/lightbws
+    channel: stable
+    tag_regex: '^v[0-9]+\.[0-9]+\.[0-9]+$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    create_if_missing: true
+    changelog_locales: [zh, en]
+    retry:
+      enabled: false
+      max_attempts: 3
+      initial_delay: 2s
+      max_delay: 30s
+    application:
+      language: zh
+      name: LightBWS
+      brief: "自托管的 Bitwarden Secrets Manager 兼容服务"
+      description: "LightBWS 提供持久化密钥管理、项目与机器账户权限、审计日志、加密导入导出，以及 S3/WebDAV 自动备份。它兼容 Bitwarden Secrets Manager SDK，适合应用、CI/CD 与自动化工作负载。"
+      keywords: "密钥管理,Bitwarden,Secrets Manager,自托管,DevOps"
+      source: https://github.com/ca-x/lightbws
+      source_author: ca-x
+      support_pc: true
+      support_mobile: false
+      screenshot_pc_files:
+        - screenshots/login-zh.png
+        - screenshots/dashboard-zh.png
+        - screenshots/audit-zh.png
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: LightBWS
+    summary: "由 GitHub Actions 发布的 LightBWS 懒猫应用"
