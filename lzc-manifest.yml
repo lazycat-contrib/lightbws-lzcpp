@@ -24,11 +24,10 @@ application:
         - /*
       do:
         - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
-
 services:
   lightbws:
     # upstream: docker.io/czyt/lightbws:v0.2.0
-    image: docker.io/czyt/lightbws:v0.2.0
+    image: registry.lazycat.cloud/czyt/czyt/lightbws:88e6bd674e124b17
     environment:
       - LIGHTBWS_ADMIN_USERNAME={{ .U.admin_username }}
       - LIGHTBWS_ADMIN_PASSWORD={{ .U.admin_password }}
@@ -39,5 +38,4 @@ services:
       - /lzcapp/var/data:/data
     cpus: 2
     mem_limit: 512M
-
 usage: "安装后直接打开应用；系统会使用部署时生成的管理员凭据自动登录。数据保存在应用持久目录中。"
