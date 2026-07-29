@@ -9,7 +9,7 @@ params:
   - id: admin_password
     type: secret
     name: "Administrator password"
-    description: "Password for the initial LightBWS administrator (at least 8 characters)"
+    description: "Password for the initial LightBWS administrator (at least 6 characters)"
     default_value: "$random(len=20)"
     optional: false
 
@@ -20,4 +20,4 @@ locales:
       description: "首次启动时创建的 LightBWS 管理员用户名"
     admin_password:
       name: "管理员密码"
-      description: "首次启动时创建的 LightBWS 管理员密码（至少 8 个字符）"
+      description: "首次启动时创建的 LightBWS 管理员密码（至少 6 个字符）"
