@@ -20,12 +20,12 @@ application:
             userSelector: 'input[autocomplete="username"]'
             passwordSelector: 'input[autocomplete="current-password"]'
             autoSubmit: true
-    - id: open-save-chooser
-      on: browser
-      when:
-        - /*
-      do:
-        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
+#    - id: open-save-chooser
+#      on: browser
+#      when:
+#        - /*
+#      do:
+#        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
 services:
   lightbws:
     # upstream: docker.io/czyt/lightbws:v0.2.3
