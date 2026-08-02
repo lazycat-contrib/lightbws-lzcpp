@@ -1,5 +1,5 @@
 package: community.lazycat.app.lightbws
-version: 0.2.4
+version: 0.2.5
 name: LightBWS
 description: "A self-hosted, SDK-compatible Bitwarden Secrets Manager server"
 author: ca-x

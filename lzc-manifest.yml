@@ -28,8 +28,8 @@ application:
 #        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
 services:
   lightbws:
-    # upstream: docker.io/czyt/lightbws:v0.2.4
-    image: registry.lazycat.cloud/czyt/czyt/lightbws:8b94ea0e5d83fc19
+    # upstream: docker.io/czyt/lightbws:v0.2.5
+    image: registry.lazycat.cloud/czyt/czyt/lightbws:d7166e4e74a6bbd9
     user: root
     environment:
       - LIGHTBWS_ADMIN_USERNAME={{ .U.admin_username }}
